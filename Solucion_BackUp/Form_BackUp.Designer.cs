@@ -31,429 +31,487 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BackUp));
-            buttonRegistrar = new Button();
-            buttonEliminar = new Button();
-            dateTimePickerMes = new DateTimePicker();
-            buttonBuscar = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            numericUpDownBackUp = new NumericUpDown();
-            label3 = new Label();
-            dgvBack = new DataGridView();
-            dateTimePickerFechaRegistro = new DateTimePicker();
-            label4 = new Label();
-            textBoxDvDs = new TextBox();
-            label5 = new Label();
-            label6 = new Label();
-            comboBoxParteBackUp = new ComboBox();
-            comboBoxMedida = new ComboBox();
-            label7 = new Label();
-            textBoxConfeccionado = new TextBox();
-            label8 = new Label();
-            numericUpDownPeso = new NumericUpDown();
-            label9 = new Label();
-            textBoxObservacion = new TextBox();
-            label10 = new Label();
-            label11 = new Label();
-            comboBoxParteDVD = new ComboBox();
-            buttonLimpiar = new Button();
-            textBoxCaratula = new TextBox();
-            label12 = new Label();
-            buttonActualizar = new Button();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownBackUp).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBack).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownPeso).BeginInit();
-            SuspendLayout();
+            this.buttonRegistrar = new System.Windows.Forms.Button();
+            this.buttonEliminar = new System.Windows.Forms.Button();
+            this.dateTimePickerMes = new System.Windows.Forms.DateTimePicker();
+            this.buttonBuscar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDownBackUp = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dgvBack = new System.Windows.Forms.DataGridView();
+            this.dateTimePickerFechaRegistro = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxDvDs = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxParteBackUp = new System.Windows.Forms.ComboBox();
+            this.comboBoxMedida = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxConfeccionado = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownPeso = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxObservacion = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBoxParteDVD = new System.Windows.Forms.ComboBox();
+            this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.textBoxCaratula = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.buttonActualizar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPeso)).BeginInit();
+            this.SuspendLayout();
             // 
             // buttonRegistrar
             // 
-            buttonRegistrar.BackColor = Color.Lime;
-            buttonRegistrar.Location = new Point(16, 603);
-            buttonRegistrar.Margin = new Padding(4);
-            buttonRegistrar.Name = "buttonRegistrar";
-            buttonRegistrar.Size = new Size(139, 38);
-            buttonRegistrar.TabIndex = 0;
-            buttonRegistrar.Text = "Registrar";
-            buttonRegistrar.UseVisualStyleBackColor = false;
-            buttonRegistrar.Click += buttonRegistrar_Click;
+            this.buttonRegistrar.BackColor = System.Drawing.Color.Lime;
+            this.buttonRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegistrar.Location = new System.Drawing.Point(19, 603);
+            this.buttonRegistrar.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonRegistrar.Name = "buttonRegistrar";
+            this.buttonRegistrar.Size = new System.Drawing.Size(139, 38);
+            this.buttonRegistrar.TabIndex = 0;
+            this.buttonRegistrar.Text = "Registrar";
+            this.buttonRegistrar.UseVisualStyleBackColor = false;
+            this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 
             // buttonEliminar
             // 
-            buttonEliminar.BackColor = Color.Tomato;
-            buttonEliminar.Location = new Point(162, 605);
-            buttonEliminar.Margin = new Padding(4);
-            buttonEliminar.Name = "buttonEliminar";
-            buttonEliminar.Size = new Size(139, 38);
-            buttonEliminar.TabIndex = 2;
-            buttonEliminar.Text = "Eliminar";
-            buttonEliminar.UseVisualStyleBackColor = false;
-            buttonEliminar.Visible = false;
-            buttonEliminar.Click += buttonEliminar_Click;
+            this.buttonEliminar.BackColor = System.Drawing.Color.Tomato;
+            this.buttonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEliminar.Location = new System.Drawing.Point(165, 603);
+            this.buttonEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonEliminar.Name = "buttonEliminar";
+            this.buttonEliminar.Size = new System.Drawing.Size(139, 38);
+            this.buttonEliminar.TabIndex = 2;
+            this.buttonEliminar.Text = "Eliminar";
+            this.buttonEliminar.UseVisualStyleBackColor = false;
+            this.buttonEliminar.Visible = false;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
             // 
             // dateTimePickerMes
             // 
-            dateTimePickerMes.CustomFormat = "MMMM/yyyy";
-            dateTimePickerMes.Format = DateTimePickerFormat.Custom;
-            dateTimePickerMes.Location = new Point(14, 130);
-            dateTimePickerMes.Margin = new Padding(4);
-            dateTimePickerMes.Name = "dateTimePickerMes";
-            dateTimePickerMes.Size = new Size(162, 27);
-            dateTimePickerMes.TabIndex = 2;
+            this.dateTimePickerMes.CustomFormat = "MMMM/yyyy";
+            this.dateTimePickerMes.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerMes.Location = new System.Drawing.Point(14, 130);
+            this.dateTimePickerMes.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerMes.Name = "dateTimePickerMes";
+            this.dateTimePickerMes.Size = new System.Drawing.Size(162, 22);
+            this.dateTimePickerMes.TabIndex = 2;
             // 
             // buttonBuscar
             // 
-            buttonBuscar.BackColor = SystemColors.ActiveCaption;
-            buttonBuscar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonBuscar.Location = new Point(120, 56);
-            buttonBuscar.Margin = new Padding(4);
-            buttonBuscar.Name = "buttonBuscar";
-            buttonBuscar.Size = new Size(94, 39);
-            buttonBuscar.TabIndex = 5;
-            buttonBuscar.Text = "Buscar";
-            buttonBuscar.UseVisualStyleBackColor = false;
-            buttonBuscar.Click += buttonBuscar_Click;
+            this.buttonBuscar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.buttonBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBuscar.Location = new System.Drawing.Point(101, 55);
+            this.buttonBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonBuscar.Name = "buttonBuscar";
+            this.buttonBuscar.Size = new System.Drawing.Size(111, 39);
+            this.buttonBuscar.TabIndex = 5;
+            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.UseVisualStyleBackColor = false;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 106);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(82, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Mes y Año ";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 106);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Mes y Año ";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 44);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(88, 20);
-            label2.TabIndex = 7;
-            label2.Text = "Nro BackUp";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 44);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Nro BackUp";
             // 
             // numericUpDownBackUp
             // 
-            numericUpDownBackUp.Location = new Point(12, 66);
-            numericUpDownBackUp.Margin = new Padding(4);
-            numericUpDownBackUp.Name = "numericUpDownBackUp";
-            numericUpDownBackUp.Size = new Size(69, 27);
-            numericUpDownBackUp.TabIndex = 1;
-            numericUpDownBackUp.TextAlign = HorizontalAlignment.Center;
+            this.numericUpDownBackUp.Location = new System.Drawing.Point(12, 66);
+            this.numericUpDownBackUp.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDownBackUp.Name = "numericUpDownBackUp";
+            this.numericUpDownBackUp.Size = new System.Drawing.Size(69, 22);
+            this.numericUpDownBackUp.TabIndex = 1;
+            this.numericUpDownBackUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(14, 216);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(77, 20);
-            label3.TabIndex = 9;
-            label3.Text = "Parte DVD";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 216);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Parte DVD";
             // 
             // dgvBack
             // 
-            dgvBack.AllowUserToAddRows = false;
-            dgvBack.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.SteelBlue;
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dgvBack.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvBack.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvBack.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvBack.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.DarkGray;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvBack.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvBack.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Window;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvBack.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvBack.Location = new Point(321, 44);
-            dgvBack.Margin = new Padding(4);
-            dgvBack.Name = "dgvBack";
-            dgvBack.ReadOnly = true;
-            dgvBack.RowHeadersVisible = false;
-            dgvBack.RowHeadersWidth = 51;
-            dgvBack.RowTemplate.Height = 40;
-            dgvBack.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBack.Size = new Size(1214, 673);
-            dgvBack.TabIndex = 10;
-            dgvBack.CellDoubleClick += dataGridView1_CellDoubleClick;
+            this.dgvBack.AllowUserToAddRows = false;
+            this.dgvBack.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvBack.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBack.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBack.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBack.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvBack.ColumnHeadersHeight = 50;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBack.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvBack.Location = new System.Drawing.Point(321, 44);
+            this.dgvBack.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvBack.Name = "dgvBack";
+            this.dgvBack.ReadOnly = true;
+            this.dgvBack.RowHeadersVisible = false;
+            this.dgvBack.RowHeadersWidth = 51;
+            this.dgvBack.RowTemplate.Height = 40;
+            this.dgvBack.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBack.Size = new System.Drawing.Size(1214, 673);
+            this.dgvBack.TabIndex = 10;
+            this.dgvBack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // dateTimePickerFechaRegistro
             // 
-            dateTimePickerFechaRegistro.CustomFormat = "";
-            dateTimePickerFechaRegistro.Format = DateTimePickerFormat.Custom;
-            dateTimePickerFechaRegistro.Location = new Point(14, 352);
-            dateTimePickerFechaRegistro.Margin = new Padding(4);
-            dateTimePickerFechaRegistro.Name = "dateTimePickerFechaRegistro";
-            dateTimePickerFechaRegistro.Size = new Size(162, 27);
-            dateTimePickerFechaRegistro.TabIndex = 7;
+            this.dateTimePickerFechaRegistro.CustomFormat = "";
+            this.dateTimePickerFechaRegistro.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFechaRegistro.Location = new System.Drawing.Point(14, 352);
+            this.dateTimePickerFechaRegistro.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerFechaRegistro.Name = "dateTimePickerFechaRegistro";
+            this.dateTimePickerFechaRegistro.Size = new System.Drawing.Size(162, 22);
+            this.dateTimePickerFechaRegistro.TabIndex = 7;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(14, 329);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(188, 20);
-            label4.TabIndex = 12;
-            label4.Text = "Fecha del Hecho / Registro";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 329);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(171, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Fecha del Hecho / Registro";
             // 
             // textBoxDvDs
             // 
-            textBoxDvDs.CharacterCasing = CharacterCasing.Upper;
-            textBoxDvDs.Location = new Point(16, 184);
-            textBoxDvDs.Margin = new Padding(4);
-            textBoxDvDs.Name = "textBoxDvDs";
-            textBoxDvDs.Size = new Size(297, 27);
-            textBoxDvDs.TabIndex = 4;
+            this.textBoxDvDs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxDvDs.Location = new System.Drawing.Point(16, 184);
+            this.textBoxDvDs.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxDvDs.Name = "textBoxDvDs";
+            this.textBoxDvDs.Size = new System.Drawing.Size(297, 22);
+            this.textBoxDvDs.TabIndex = 4;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(15, 161);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(37, 20);
-            label5.TabIndex = 14;
-            label5.Text = "DVS";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 161);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 16);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "DVS";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(202, 106);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(94, 20);
-            label6.TabIndex = 15;
-            label6.Text = "Parte Backup";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(202, 106);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 16);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Parte Backup";
             // 
             // comboBoxParteBackUp
             // 
-            comboBoxParteBackUp.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comboBoxParteBackUp.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxParteBackUp.FormattingEnabled = true;
-            comboBoxParteBackUp.Items.AddRange(new object[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IIX", "IX", "X", "XI", "XII", "XIII", "XIV", "XVI", "XVII", "XVIII", "XIIX", "XIX", "XX" });
-            comboBoxParteBackUp.Location = new Point(202, 130);
-            comboBoxParteBackUp.Margin = new Padding(4);
-            comboBoxParteBackUp.Name = "comboBoxParteBackUp";
-            comboBoxParteBackUp.Size = new Size(89, 28);
-            comboBoxParteBackUp.TabIndex = 3;
+            this.comboBoxParteBackUp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxParteBackUp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxParteBackUp.FormattingEnabled = true;
+            this.comboBoxParteBackUp.Items.AddRange(new object[] {
+            "I",
+            "II",
+            "III",
+            "IV",
+            "V",
+            "VI",
+            "VII",
+            "VIII",
+            "IIX",
+            "IX",
+            "X",
+            "XI",
+            "XII",
+            "XIII",
+            "XIV",
+            "XVI",
+            "XVII",
+            "XVIII",
+            "XIIX",
+            "XIX",
+            "XX"});
+            this.comboBoxParteBackUp.Location = new System.Drawing.Point(202, 130);
+            this.comboBoxParteBackUp.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxParteBackUp.Name = "comboBoxParteBackUp";
+            this.comboBoxParteBackUp.Size = new System.Drawing.Size(89, 24);
+            this.comboBoxParteBackUp.TabIndex = 3;
             // 
             // comboBoxMedida
             // 
-            comboBoxMedida.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBoxMedida.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxMedida.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxMedida.FormattingEnabled = true;
-            comboBoxMedida.Items.AddRange(new object[] { "KB", "MB", "GB", "TB" });
-            comboBoxMedida.Location = new Point(139, 411);
-            comboBoxMedida.Margin = new Padding(4);
-            comboBoxMedida.Name = "comboBoxMedida";
-            comboBoxMedida.Size = new Size(80, 28);
-            comboBoxMedida.TabIndex = 9;
+            this.comboBoxMedida.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxMedida.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxMedida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMedida.FormattingEnabled = true;
+            this.comboBoxMedida.Items.AddRange(new object[] {
+            "KB",
+            "MB",
+            "GB",
+            "TB"});
+            this.comboBoxMedida.Location = new System.Drawing.Point(139, 411);
+            this.comboBoxMedida.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxMedida.Name = "comboBoxMedida";
+            this.comboBoxMedida.Size = new System.Drawing.Size(80, 24);
+            this.comboBoxMedida.TabIndex = 9;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(139, 387);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(60, 20);
-            label7.TabIndex = 19;
-            label7.Text = "Medida";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(139, 387);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Medida";
             // 
             // textBoxConfeccionado
             // 
-            textBoxConfeccionado.CharacterCasing = CharacterCasing.Upper;
-            textBoxConfeccionado.Location = new Point(12, 472);
-            textBoxConfeccionado.Margin = new Padding(4);
-            textBoxConfeccionado.Name = "textBoxConfeccionado";
-            textBoxConfeccionado.Size = new Size(300, 27);
-            textBoxConfeccionado.TabIndex = 10;
+            this.textBoxConfeccionado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxConfeccionado.Location = new System.Drawing.Point(12, 472);
+            this.textBoxConfeccionado.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxConfeccionado.Name = "textBoxConfeccionado";
+            this.textBoxConfeccionado.Size = new System.Drawing.Size(300, 22);
+            this.textBoxConfeccionado.TabIndex = 10;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(12, 448);
-            label8.Margin = new Padding(4, 0, 4, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(141, 20);
-            label8.TabIndex = 21;
-            label8.Text = "Confeccionador por";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 448);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(125, 16);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Confeccionador por";
             // 
             // numericUpDownPeso
             // 
-            numericUpDownPeso.DecimalPlaces = 2;
-            numericUpDownPeso.Location = new Point(12, 411);
-            numericUpDownPeso.Margin = new Padding(4);
-            numericUpDownPeso.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
-            numericUpDownPeso.Name = "numericUpDownPeso";
-            numericUpDownPeso.Size = new Size(96, 27);
-            numericUpDownPeso.TabIndex = 8;
-            numericUpDownPeso.TextAlign = HorizontalAlignment.Center;
+            this.numericUpDownPeso.DecimalPlaces = 2;
+            this.numericUpDownPeso.Location = new System.Drawing.Point(12, 411);
+            this.numericUpDownPeso.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDownPeso.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.numericUpDownPeso.Name = "numericUpDownPeso";
+            this.numericUpDownPeso.Size = new System.Drawing.Size(96, 22);
+            this.numericUpDownPeso.TabIndex = 8;
+            this.numericUpDownPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(16, 388);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(39, 20);
-            label9.TabIndex = 23;
-            label9.Text = "Peso";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 388);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 16);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Peso";
             // 
             // textBoxObservacion
             // 
-            textBoxObservacion.CharacterCasing = CharacterCasing.Upper;
-            textBoxObservacion.Location = new Point(12, 531);
-            textBoxObservacion.Margin = new Padding(4);
-            textBoxObservacion.Multiline = true;
-            textBoxObservacion.Name = "textBoxObservacion";
-            textBoxObservacion.Size = new Size(300, 64);
-            textBoxObservacion.TabIndex = 11;
+            this.textBoxObservacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxObservacion.Location = new System.Drawing.Point(12, 531);
+            this.textBoxObservacion.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxObservacion.Multiline = true;
+            this.textBoxObservacion.Name = "textBoxObservacion";
+            this.textBoxObservacion.Size = new System.Drawing.Size(300, 64);
+            this.textBoxObservacion.TabIndex = 11;
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(12, 508);
-            label10.Margin = new Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(91, 20);
-            label10.TabIndex = 25;
-            label10.Text = "Observacion";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 508);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(84, 16);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Observacion";
             // 
             // label11
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(968, 11);
-            label11.Margin = new Padding(4, 0, 4, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(74, 23);
-            label11.TabIndex = 26;
-            label11.Text = "BackUps";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label11.Location = new System.Drawing.Point(968, 11);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 23);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "BackUps";
             // 
             // comboBoxParteDVD
             // 
-            comboBoxParteDVD.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comboBoxParteDVD.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBoxParteDVD.FormattingEnabled = true;
-            comboBoxParteDVD.Items.AddRange(new object[] { "N/C", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IIX", "IX", "X", "XI", "XII", "XIII", "XIV", "XVI", "XVII", "XVIII", "XIIX", "XIX", "XX" });
-            comboBoxParteDVD.Location = new Point(16, 239);
-            comboBoxParteDVD.Margin = new Padding(4);
-            comboBoxParteDVD.Name = "comboBoxParteDVD";
-            comboBoxParteDVD.Size = new Size(72, 28);
-            comboBoxParteDVD.TabIndex = 5;
+            this.comboBoxParteDVD.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxParteDVD.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxParteDVD.FormattingEnabled = true;
+            this.comboBoxParteDVD.Items.AddRange(new object[] {
+            "N/C",
+            "I",
+            "II",
+            "III",
+            "IV",
+            "V",
+            "VI",
+            "VII",
+            "VIII",
+            "IIX",
+            "IX",
+            "X",
+            "XI",
+            "XII",
+            "XIII",
+            "XIV",
+            "XVI",
+            "XVII",
+            "XVIII",
+            "XIIX",
+            "XIX",
+            "XX"});
+            this.comboBoxParteDVD.Location = new System.Drawing.Point(16, 239);
+            this.comboBoxParteDVD.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxParteDVD.Name = "comboBoxParteDVD";
+            this.comboBoxParteDVD.Size = new System.Drawing.Size(72, 24);
+            this.comboBoxParteDVD.TabIndex = 5;
             // 
             // buttonLimpiar
             // 
-            buttonLimpiar.BackColor = SystemColors.ActiveCaption;
-            buttonLimpiar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonLimpiar.Location = new Point(220, 58);
-            buttonLimpiar.Margin = new Padding(4);
-            buttonLimpiar.Name = "buttonLimpiar";
-            buttonLimpiar.Size = new Size(84, 39);
-            buttonLimpiar.TabIndex = 28;
-            buttonLimpiar.Text = "Limpiar";
-            buttonLimpiar.UseVisualStyleBackColor = false;
-            buttonLimpiar.Click += buttonLimpiar_Click;
+            this.buttonLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.buttonLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLimpiar.Location = new System.Drawing.Point(219, 55);
+            this.buttonLimpiar.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonLimpiar.Name = "buttonLimpiar";
+            this.buttonLimpiar.Size = new System.Drawing.Size(93, 39);
+            this.buttonLimpiar.TabIndex = 28;
+            this.buttonLimpiar.Text = "Limpiar";
+            this.buttonLimpiar.UseVisualStyleBackColor = false;
+            this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
             // textBoxCaratula
             // 
-            textBoxCaratula.CharacterCasing = CharacterCasing.Upper;
-            textBoxCaratula.Location = new Point(15, 292);
-            textBoxCaratula.Margin = new Padding(4);
-            textBoxCaratula.Name = "textBoxCaratula";
-            textBoxCaratula.Size = new Size(298, 27);
-            textBoxCaratula.TabIndex = 6;
+            this.textBoxCaratula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxCaratula.Location = new System.Drawing.Point(15, 292);
+            this.textBoxCaratula.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCaratula.Name = "textBoxCaratula";
+            this.textBoxCaratula.Size = new System.Drawing.Size(298, 22);
+            this.textBoxCaratula.TabIndex = 6;
             // 
             // label12
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(15, 271);
-            label12.Margin = new Padding(4, 0, 4, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(64, 20);
-            label12.TabIndex = 31;
-            label12.Text = "Caratula";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 271);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 16);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Caratula";
             // 
             // buttonActualizar
             // 
-            buttonActualizar.BackColor = Color.Yellow;
-            buttonActualizar.Location = new Point(15, 603);
-            buttonActualizar.Margin = new Padding(4);
-            buttonActualizar.Name = "buttonActualizar";
-            buttonActualizar.Size = new Size(139, 38);
-            buttonActualizar.TabIndex = 32;
-            buttonActualizar.Text = "Actualizar";
-            buttonActualizar.UseVisualStyleBackColor = false;
-            buttonActualizar.Visible = false;
-            buttonActualizar.Click += buttonActualizar_Click;
+            this.buttonActualizar.BackColor = System.Drawing.Color.Yellow;
+            this.buttonActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonActualizar.Location = new System.Drawing.Point(18, 603);
+            this.buttonActualizar.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonActualizar.Name = "buttonActualizar";
+            this.buttonActualizar.Size = new System.Drawing.Size(139, 38);
+            this.buttonActualizar.TabIndex = 32;
+            this.buttonActualizar.Text = "Actualizar";
+            this.buttonActualizar.UseVisualStyleBackColor = false;
+            this.buttonActualizar.Visible = false;
+            this.buttonActualizar.Click += new System.EventHandler(this.buttonActualizar_Click);
             // 
             // Form_BackUp
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
-            AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1540, 732);
-            Controls.Add(buttonActualizar);
-            Controls.Add(label12);
-            Controls.Add(textBoxCaratula);
-            Controls.Add(buttonLimpiar);
-            Controls.Add(comboBoxParteDVD);
-            Controls.Add(label11);
-            Controls.Add(label10);
-            Controls.Add(textBoxObservacion);
-            Controls.Add(label9);
-            Controls.Add(numericUpDownPeso);
-            Controls.Add(label8);
-            Controls.Add(textBoxConfeccionado);
-            Controls.Add(label7);
-            Controls.Add(comboBoxMedida);
-            Controls.Add(comboBoxParteBackUp);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(textBoxDvDs);
-            Controls.Add(label4);
-            Controls.Add(dateTimePickerFechaRegistro);
-            Controls.Add(dgvBack);
-            Controls.Add(label3);
-            Controls.Add(numericUpDownBackUp);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(buttonBuscar);
-            Controls.Add(dateTimePickerMes);
-            Controls.Add(buttonEliminar);
-            Controls.Add(buttonRegistrar);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4, 2, 4, 2);
-            Name = "Form_BackUp";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registro BackUp";
-            Load += Form_BackUp_Load;
-            ((System.ComponentModel.ISupportInitialize)numericUpDownBackUp).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvBack).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownPeso).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(1540, 732);
+            this.Controls.Add(this.buttonActualizar);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBoxCaratula);
+            this.Controls.Add(this.buttonLimpiar);
+            this.Controls.Add(this.comboBoxParteDVD);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxObservacion);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.numericUpDownPeso);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxConfeccionado);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxMedida);
+            this.Controls.Add(this.comboBoxParteBackUp);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxDvDs);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dateTimePickerFechaRegistro);
+            this.Controls.Add(this.dgvBack);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.numericUpDownBackUp);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonBuscar);
+            this.Controls.Add(this.dateTimePickerMes);
+            this.Controls.Add(this.buttonEliminar);
+            this.Controls.Add(this.buttonRegistrar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Name = "Form_BackUp";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Registro BackUp";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form_BackUp_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBackUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPeso)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

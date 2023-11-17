@@ -159,16 +159,21 @@ namespace Presentacion
             dgvBack.DataSource = null;
             registros.Sort();
             dgvBack.DataSource = registros;
+            dgvBack.Columns["Id"].Width = 30;
             dgvBack.Columns["NroBackUp"].HeaderText = "Nro BackUp";
-            dgvBack.Columns["NroBackUp"].Width = 70;
+            dgvBack.Columns["NroBackUp"].Width = 60;
             dgvBack.Columns["ParteBackUp"].HeaderText = "Parte Backup";
-            dgvBack.Columns["ParteBackUp"].Width = 70;
+            dgvBack.Columns["ParteBackUp"].Width = 60;
+            dgvBack.Columns["FechaBackUp"].HeaderText = "Fecha Backup";
+            dgvBack.Columns["FechaBackUp"].Width = 80;
             dgvBack.Columns["ParteDVD"].HeaderText = "Parte DVD";
-            dgvBack.Columns["ParteDVD"].Width = 70;
+            dgvBack.Columns["ParteDVD"].Width = 60;
             dgvBack.Columns["Fecha_Registro"].HeaderText = "Fecha Registro";
-            dgvBack.Columns["Fecha_Registro"].Width = 90;
-            dgvBack.Columns["Peso"].Width = 90;
-            dgvBack.Columns["Confeccionado"].Width = 130;
+            dgvBack.Columns["Fecha_Registro"].Width = 60;
+            dgvBack.Columns["Peso"].Width = 60;
+            dgvBack.Columns["Confeccionado"].Width = 100;
+            dgvBack.Columns["Creado"].Width = 90;
+            dgvBack.Columns["Modificado"].Width = 90;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -286,6 +291,7 @@ namespace Presentacion
                 textBoxObservacion.Text = "";
                 textBoxCaratula.Text = "";
                 HabilitarRegistro();
+                ObtenerRegistrosExcel();
                 CargarGrilla(registros);
             }
             catch (Exception ex)
@@ -471,5 +477,6 @@ namespace Presentacion
             }
         }
 
+       
     }
 }
