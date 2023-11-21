@@ -108,7 +108,11 @@ namespace Presentacion
                 MessageBox.Show("Debe seleccionar una parte de DVD", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
+            if (string.IsNullOrEmpty(textBoxCaratula.Text))
+            {
+                MessageBox.Show("Debe ingresar una caratula válida", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             // Validar Peso
             if (numericUpDownPeso.Value == 0)
             {
