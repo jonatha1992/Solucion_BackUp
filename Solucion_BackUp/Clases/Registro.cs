@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Presentacion.Clases
 {
@@ -21,6 +18,7 @@ namespace Presentacion.Clases
         public string Observacion { get; set; } = null;
         public DateTime? Creado{ get; set; }
         public DateTime? Modificado{ get; set; }
+        public Usuario Usuario { get; set; } = new Usuario();
 
 
         public int CompareTo(Registro other)

@@ -223,8 +223,10 @@ namespace Presentacion
             // 
             // textBoxDvDs
             // 
+            this.textBoxDvDs.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxDvDs.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxDvDs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxDvDs.Location = new System.Drawing.Point(16, 184);
+            this.textBoxDvDs.Location = new System.Drawing.Point(15, 181);
             this.textBoxDvDs.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDvDs.Name = "textBoxDvDs";
             this.textBoxDvDs.Size = new System.Drawing.Size(297, 22);
@@ -236,9 +238,9 @@ namespace Presentacion
             this.label5.Location = new System.Drawing.Point(15, 161);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 16);
+            this.label5.Size = new System.Drawing.Size(36, 16);
             this.label5.TabIndex = 14;
-            this.label5.Text = "DVS";
+            this.label5.Text = "DVD";
             // 
             // label6
             // 
@@ -271,6 +273,7 @@ namespace Presentacion
             "XII",
             "XIII",
             "XIV",
+            "XV",
             "XVI",
             "XVII",
             "XVIII",
@@ -312,6 +315,8 @@ namespace Presentacion
             // 
             // textBoxConfeccionado
             // 
+            this.textBoxConfeccionado.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxConfeccionado.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxConfeccionado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxConfeccionado.Location = new System.Drawing.Point(12, 472);
             this.textBoxConfeccionado.Margin = new System.Windows.Forms.Padding(4);
@@ -325,13 +330,18 @@ namespace Presentacion
             this.label8.Location = new System.Drawing.Point(12, 448);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 16);
+            this.label8.Size = new System.Drawing.Size(121, 16);
             this.label8.TabIndex = 21;
-            this.label8.Text = "Confeccionador por";
+            this.label8.Text = "Confeccionado por";
             // 
             // numericUpDownPeso
             // 
             this.numericUpDownPeso.DecimalPlaces = 2;
+            this.numericUpDownPeso.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericUpDownPeso.Location = new System.Drawing.Point(12, 411);
             this.numericUpDownPeso.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownPeso.Maximum = new decimal(new int[] {
@@ -356,6 +366,8 @@ namespace Presentacion
             // 
             // textBoxObservacion
             // 
+            this.textBoxObservacion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxObservacion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
             this.textBoxObservacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxObservacion.Location = new System.Drawing.Point(12, 531);
             this.textBoxObservacion.Margin = new System.Windows.Forms.Padding(4);
@@ -407,6 +419,7 @@ namespace Presentacion
             "XII",
             "XIII",
             "XIV",
+            "XV",
             "XVI",
             "XVII",
             "XVIII",
@@ -434,8 +447,10 @@ namespace Presentacion
             // 
             // textBoxCaratula
             // 
+            this.textBoxCaratula.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxCaratula.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBoxCaratula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxCaratula.Location = new System.Drawing.Point(15, 292);
+            this.textBoxCaratula.Location = new System.Drawing.Point(14, 291);
             this.textBoxCaratula.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCaratula.Name = "textBoxCaratula";
             this.textBoxCaratula.Size = new System.Drawing.Size(298, 22);
@@ -447,15 +462,15 @@ namespace Presentacion
             this.label12.Location = new System.Drawing.Point(15, 271);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 16);
+            this.label12.Size = new System.Drawing.Size(100, 16);
             this.label12.TabIndex = 31;
-            this.label12.Text = "Caratula";
+            this.label12.Text = "Causa-Caratula";
             // 
             // buttonActualizar
             // 
             this.buttonActualizar.BackColor = System.Drawing.Color.Yellow;
             this.buttonActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonActualizar.Location = new System.Drawing.Point(18, 603);
+            this.buttonActualizar.Location = new System.Drawing.Point(19, 603);
             this.buttonActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.buttonActualizar.Name = "buttonActualizar";
             this.buttonActualizar.Size = new System.Drawing.Size(139, 38);

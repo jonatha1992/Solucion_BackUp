@@ -10,17 +10,25 @@ namespace Presentacion
 {
     public partial class Form_BackUp : Form
     {
-        public Form_BackUp()
+        public Form_BackUp(Usuario usuario = null)
         {
+
             InitializeComponent();
             comboBoxMedida.DataSource = new List<string> { "GB", "MB", "KB", "TB" };
+
+            if (usuario != null) { user = usuario; }     
         }
 
 
 
-        string filePath = "PLANILLA BACK UP.xlsx";
+        Usuario user;
+        string filePath = "BASE.xlsx";
         List<Registro> registros = new List<Registro>();
         Registro registroSeleccionado;
+        List<string> SugerenciasDVD = new List<string>();
+        List<string> SugerenciasConfeccionado = new List<string>();
+        List<string> SugerenciasCaratula = new List<string>();
+
 
 
         private void Form_BackUp_Load(object sender, EventArgs e)
@@ -28,6 +36,7 @@ namespace Presentacion
             try
             {
                 ObtenerRegistrosExcel();
+                ObtenerSugerenciasExcel();
                 CargarGrilla(registros);
 
             }
@@ -41,8 +50,8 @@ namespace Presentacion
 
         private void ObtenerRegistrosExcel()
         {
-            registros = new List<Registro>();   
-            
+            registros = new List<Registro>();
+
             using (var workbook = new XLWorkbook(filePath))
             {
                 var worksheet = workbook.Worksheet("BACKUP"); // Obtener la primera hoja del libro
@@ -67,10 +76,12 @@ namespace Presentacion
                     registro.Peso = row.Cell(9).GetString();
                     registro.Confeccionado = row.Cell(10).GetString();
                     registro.Observacion = row.Cell(11).GetString();
+                    
 
                     if (!row.Cell(8).IsEmpty()) registro.Fecha_Registro = row.Cell(8).GetDateTime();
                     if (!row.Cell(12).IsEmpty()) registro.Creado = row.Cell(12).GetDateTime();
                     if (!row.Cell(13).IsEmpty()) registro.Modificado = row.Cell(13).GetDateTime();
+                    if (!row.Cell(14).IsEmpty()) registro.Usuario.Nombre = row.Cell(14).GetString();
 
                     // Agregar el objeto Registro a la lista
                     registros.Add(registro);
@@ -80,6 +91,48 @@ namespace Presentacion
 
         }
 
+
+        private void ObtenerSugerenciasExcel()
+        {
+
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet("BACKUP"); // Obtener la primera hoja del libro
+
+                // Iterar a través de las filas del archivo Excel
+                foreach (var row in worksheet.RowsUsed().Skip(1)) // Skip(1) para omitir la primera fila (encabezados)
+                {
+
+                    if (row.Cell(1).IsEmpty())
+                    {
+                        break; // Salir completamente del bucle
+                    }
+                    // Si llegamos a este punto, la primera celda tiene información, así que podemos procesar la fila
+                    string DVD = row.Cell(5).GetString().Trim();
+                    if (!SugerenciasDVD.Exists(X => X == DVD))
+                    {
+                        SugerenciasDVD.Add(DVD);
+                    }
+
+                    string Caratula = row.Cell(7).GetString().Trim();
+                    if (!SugerenciasCaratula.Exists(X => X == Caratula))
+                    {
+                        SugerenciasCaratula.Add(Caratula);
+                    }
+                    
+                    string Confeccionado = row.Cell(7).GetString().Trim();
+                    if (!SugerenciasConfeccionado.Exists(X => X == Confeccionado))
+                    {
+                        SugerenciasCaratula.Add(Confeccionado);
+                    }
+                }
+
+            }
+
+            textBoxCaratula.AutoCompleteCustomSource.AddRange(SugerenciasCaratula.ToArray());
+            textBoxDvDs.AutoCompleteCustomSource.AddRange(SugerenciasDVD.ToArray());
+            textBoxConfeccionado.AutoCompleteCustomSource.AddRange(SugerenciasConfeccionado.ToArray());
+        }
         public bool ValidarControles()
         {
             // Validar NroBackUp
@@ -145,17 +198,24 @@ namespace Presentacion
         {
             Registro registro = new Registro();
             registro.NroBackUp = Convert.ToInt32(numericUpDownBackUp.Value);
-            registro.ParteBackUp = comboBoxParteBackUp.Text;
+            registro.ParteBackUp = comboBoxParteBackUp.Text.Trim();
             registro.FechaBackUP = dateTimePickerMes.Text.ToUpper();
-            registro.DVD = textBoxDvDs.Text;
-            registro.ParteDVD = comboBoxParteDVD.Text;
-            registro.Caratula = textBoxCaratula.Text;
+            registro.DVD = textBoxDvDs.Text.Trim();
+            registro.ParteDVD = comboBoxParteDVD.Text.Trim();
+            registro.Caratula = textBoxCaratula.Text.Trim();
             registro.Fecha_Registro = dateTimePickerFechaRegistro.Value.Date;
             registro.Peso = numericUpDownPeso.Value.ToString() + " " + comboBoxMedida.Text;
-            registro.Confeccionado = textBoxConfeccionado.Text;
-            registro.Observacion = textBoxObservacion.Text;
+            registro.Confeccionado = textBoxConfeccionado.Text.Trim();
+            registro.Observacion = textBoxObservacion.Text.Trim();
+            registro.Usuario = user;
+
+            SugerenciasDVD.Add(textBoxDvDs.Text);
+            SugerenciasConfeccionado.Add(textBoxConfeccionado.Text);
+            SugerenciasCaratula.Add(textBoxCaratula.Text);
 
             return registro;
+
+
         }
 
         void CargarGrilla(List<Registro> registros)
@@ -178,6 +238,9 @@ namespace Presentacion
             dgvBack.Columns["Confeccionado"].Width = 100;
             dgvBack.Columns["Creado"].Width = 90;
             dgvBack.Columns["Modificado"].Width = 90;
+            dgvBack.Columns["Creado"].Visible = false;
+            dgvBack.Columns["Modificado"].Visible = false;
+            dgvBack.Columns["Usuario"].Visible = false;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -214,13 +277,13 @@ namespace Presentacion
         {
             buttonRegistrar.Visible = true;
             buttonActualizar.Visible = false;
-            //buttonEliminar.Visible = false;
+            buttonEliminar.Visible = false;
         }
         void HabilitarActualizacion()
         {
             buttonRegistrar.Visible = false;
             buttonActualizar.Visible = true;
-            //buttonEliminar.Visible = true;
+            buttonEliminar.Visible = user.Rol == "ADMIN" ? true : false;
         }
 
         private void buttonBuscar_Click(object sender, EventArgs e)
@@ -311,13 +374,15 @@ namespace Presentacion
                 if (ValidarControles())
                 {
                     var nuevo = CrearRegistro();
-                    nuevo.Creado= DateTime.Now;
+                    nuevo.Creado = DateTime.Now;
                     AgregarRegistro(nuevo);
                     ObtenerRegistrosExcel();
                     CargarGrilla(registros);
                     HabilitarRegistro();
+                    buttonLimpiar_Click(null, null);
 
-                    MessageBox.Show($"Se registro el backup la cartuala {nuevo.NroBackUp} parte {nuevo.ParteBackUp} ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+
+                    MessageBox.Show($"Se registro el backup  {nuevo.NroBackUp} parte {nuevo.ParteBackUp} ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                 }
             }
             catch (Exception ex)
@@ -334,7 +399,7 @@ namespace Presentacion
                     var result = MessageBox.Show($"¿Seguro que desea borrar el registro del back-Up {registroSeleccionado.Caratula}?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
                     {
-                        registros.Remove(registroSeleccionado);
+                        EliminarRegistro(registroSeleccionado);
                         MessageBox.Show($"Se elimino el registro del back-Up {registroSeleccionado.Caratula}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         buttonLimpiar_Click(null, null);
                     }
@@ -383,9 +448,6 @@ namespace Presentacion
                     int lastRow = worksheet.LastCellUsed().Address.RowNumber;
                     nuevoRegistro.Id = registros.Max(x => x.Id) + 1;
 
-
-
-
                     // Asegúrate de que el nuevo registro no exista ya en el Excel antes de agregarlo
                     if (!registros.Any(r => r.Id == nuevoRegistro.Id))
                     {
@@ -403,10 +465,10 @@ namespace Presentacion
                         worksheet.Cell(lastRow + 1, 11).Value = nuevoRegistro.Observacion;
                         worksheet.Cell(lastRow + 1, 12).Value = nuevoRegistro.Creado;
                         worksheet.Cell(lastRow + 1, 13).Value = nuevoRegistro.Modificado;
+                        worksheet.Cell(lastRow + 1, 14).Value = nuevoRegistro.Usuario.Nombre;
 
                         // Guarda los cambios en el archivo Excel
                         workbook.SaveAs(filePath);
-
                     }
                     else
                     {
@@ -416,8 +478,6 @@ namespace Presentacion
                     return true;
 
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -461,6 +521,7 @@ namespace Presentacion
                         row.Cell(11).Value = registroActualizado.Observacion;
                         row.Cell(12).Value = registroActualizado.Creado;
                         row.Cell(13).Value = registroActualizado.Modificado;
+                        row.Cell(14).Value = registroActualizado.Usuario.Nombre;
 
                         // Guarda los cambios en el archivo Excel
                         workbook.SaveAs(filePath);
@@ -472,7 +533,6 @@ namespace Presentacion
                     }
                     return true;
                 }
-
             }
             catch (Exception ex)
             {
@@ -480,7 +540,48 @@ namespace Presentacion
                 return false;
             }
         }
+        private bool EliminarRegistro(Registro registroEliminado)
+        {
+            try
+            {
+                using (var workbook = new XLWorkbook(filePath))
+                {
+                    var worksheet = workbook.Worksheet("BACKUP");
 
-       
+                    var cell = worksheet.CellsUsed(c => c.WorksheetRow().RowNumber() >= 2)
+                                .FirstOrDefault(c =>
+                                {
+                                    if (int.TryParse(c.GetString(), out int cellValue))
+                                    {
+                                        return cellValue == registroEliminado.Id;
+                                    }
+                                    return false;
+                                });
+
+                    // Si encuentra la celda, elimina la fila
+                    if (cell != null)
+                    {
+                        var row = cell.WorksheetRow();
+                        row.Delete();
+
+                        // Guarda los cambios en el archivo Excel
+                        workbook.SaveAs(filePath);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No se encontró el registro con NroBackUp {registroEliminado.NroBackUp}, ParteBackUp {registroEliminado.ParteBackUp} y FechaBackUP {registroEliminado.FechaBackUP} en el archivo Excel.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar en Excel: {ex.Message}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }
