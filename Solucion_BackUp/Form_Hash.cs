@@ -1,63 +1,33 @@
-﻿using Hash;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
 
-namespace Hash
+namespace Presentacion
 {
     public partial class Form_Hash : Form
     {
         List<string> NombreArchivos = new List<string>();
         List<string> RutaArchivos = new List<string>();
         Formulario_Hash formulario_hash = new Formulario_Hash();
-        List<BEOficial> listaOficiales = new List<BEOficial>();
-        List<BEJerarquia> listaJerarquias = BEJerarquia.ListarJeraquias();
-        List<BEDestino> listaDestinos = BEDestino.ListarDestinos();
+        List<Oficial> listaOficiales = new List<Oficial>();
+        List<Jerarquia> listaJerarquias = Jerarquia.ListarJeraquias();
+        List<Destino> listaDestinos = Destino.ListarDestinos();
+        User User; 
 
         string carpetaSeleccionada;
 
 
 
-        public Form_Hash()
+        public Form_Hash(User usuario )
         {
             InitializeComponent();
 
             try
             {
-
-                comboBoxJerarquiaRecibe.DataSource = listaJerarquias;
-                comboBoxJerarquiaEntrega.DataSource = listaJerarquias?.ConvertAll(item => (BEJerarquia)item.Clone());
-
-                comboBoxDestRecibe.DataSource = listaDestinos;
-                comboBoxDestEntrega.DataSource = listaDestinos?.ConvertAll(item => (BEDestino)item.Clone());
-       
-                listaOficiales = BEOficial.ObtenerOficiales();
-
-
-
-                AutoCompleteStringCollection source = new AutoCompleteStringCollection();
-                foreach (BEOficial oficial in listaOficiales)
-                {
-                    source.Add(oficial.NombreCompleto);
-                }
-                textBoxNomEntrega.AutoCompleteCustomSource = source;
-                textBoxNomEntrega.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                textBoxNomEntrega.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-                textBoxNomOfRecibe.AutoCompleteCustomSource = source;
-                textBoxNomOfRecibe.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                textBoxNomOfRecibe.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-
-
-                AutoCompleteStringCollection source2 = new AutoCompleteStringCollection();
-                textBoxDescripcion.AutoCompleteCustomSource = source2;
-                textBoxDescripcion.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                textBoxDescripcion.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
+                ObternerSugerencias();
                 labelPesoTotal.Text = "0";
             }
             catch (Exception ex)
@@ -66,7 +36,38 @@ namespace Hash
             }
         }
 
+        private void ObternerSugerencias()
+        {
+            comboBoxJerarquiaRecibe.DataSource = listaJerarquias;
+            comboBoxJerarquiaEntrega.DataSource = listaJerarquias?.ConvertAll(item => (Jerarquia)item.Clone());
 
+            comboBoxDestRecibe.DataSource = listaDestinos;
+            comboBoxDestEntrega.DataSource = listaDestinos?.ConvertAll(item => (Destino)item.Clone());
+
+            listaOficiales = Oficial.ObtenerOficiales();
+
+
+
+            AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+            foreach (Oficial oficial in listaOficiales)
+            {
+                source.Add(oficial.NombreCompleto);
+            }
+            textBoxNomEntrega.AutoCompleteCustomSource = source;
+            textBoxNomEntrega.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBoxNomEntrega.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            textBoxNomOfRecibe.AutoCompleteCustomSource = source;
+            textBoxNomOfRecibe.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBoxNomOfRecibe.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+
+
+            AutoCompleteStringCollection source2 = new AutoCompleteStringCollection();
+            textBoxDescripcion.AutoCompleteCustomSource = source2;
+            textBoxDescripcion.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBoxDescripcion.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
 
         private string calcularHash(string rutaArchivo)
         {
@@ -92,8 +93,6 @@ namespace Hash
             }
             return hash;
         }
-
-
         private void buttonCarpetaSeleccionada_Click(object sender, EventArgs e)
         {
             try
@@ -122,7 +121,7 @@ namespace Hash
                     // Mostrar los nombres de los archivos en la consola
                     foreach (string archivo in RutaArchivos)
                     {
-                        BEArchivo archivo1 = new BEArchivo(archivo);
+                        Archivo archivo1 = new Archivo(archivo);
                         archivo1.Hash = calcularHash(archivo);
 
                         archivo1.Nro_Orden = formulario_hash.ListaArchivos.Count + 1;
@@ -145,22 +144,18 @@ namespace Hash
             }
 
         }
-
         public void MostrarSpriner()
         {
             circularProgressBar1.Text = "0%";
             circularProgressBar1.Value = 0;
             circularProgressBar1.Minimum = 0;
             circularProgressBar1.Visible = true;
-
         }
-
         public void OcultarSpriner()
         {
             circularProgressBar1.Visible = false;
 
         }
-
         private void Actualizar()
         {
             formulario_hash.Contar();
@@ -185,7 +180,6 @@ namespace Hash
             labelPesoTotal.Text = formulario_hash.pesototal;
 
         }
-
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -194,7 +188,7 @@ namespace Hash
 
                 foreach (DataGridViewRow item in elementosSeleccioados)
                 {
-                    BEArchivo archivo = item.DataBoundItem as BEArchivo;  
+                    Archivo archivo = item.DataBoundItem as Archivo;  
                     NombreArchivos.Remove(NombreArchivos.Find(x=>x.Contains(archivo.Nombre)));
                     formulario_hash.ListaArchivos.Remove(formulario_hash.ListaArchivos.Find(x => x.Nombre.Contains(archivo.Nombre)));
                 }
@@ -205,7 +199,6 @@ namespace Hash
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void textBoxNomOfRecibe_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -248,19 +241,19 @@ namespace Hash
 
                 formulario_hash.Nro_Hash = (int)numericUpDownHash.Value;
                 formulario_hash.Descripcion = textBoxDescripcion.Text;
-                formulario_hash.OfEntrega = new BEOficial(Convert.ToInt32(numericUpDownEntrega.Value), textBoxNomEntrega.Text);
-                formulario_hash.OfEntrega.Jerarquia = (BEJerarquia)comboBoxJerarquiaEntrega.SelectedItem;
-                formulario_hash.OfEntrega.Destino = new BEDestino(comboBoxDestEntrega.Text);
-                BEDestino.AgregaDestino(formulario_hash.OfEntrega.Destino);
-                BEOficial.AgregarOficial(formulario_hash.OfEntrega);
+                formulario_hash.OfEntrega = new Oficial(Convert.ToInt32(numericUpDownEntrega.Value), textBoxNomEntrega.Text);
+                formulario_hash.OfEntrega.Jerarquia = (Jerarquia)comboBoxJerarquiaEntrega.SelectedItem;
+                formulario_hash.OfEntrega.Destino = new Destino(comboBoxDestEntrega.Text);
+                Destino.AgregaDestino(formulario_hash.OfEntrega.Destino);
+                Oficial.AgregarOficial(formulario_hash.OfEntrega);
 
                 if (checkBoxRecibe.Checked)
                 {
-                    formulario_hash.OfRecibe = new BEOficial(Convert.ToInt32(numericUpDownRecibe.Value), textBoxNomOfRecibe.Text);
-                    formulario_hash.OfRecibe.Jerarquia = (BEJerarquia)comboBoxJerarquiaRecibe.SelectedItem;
-                    formulario_hash.OfRecibe.Destino = new BEDestino(comboBoxDestRecibe.Text);
-                    BEOficial.AgregarOficial(formulario_hash.OfRecibe);
-                    BEDestino.AgregaDestino(formulario_hash.OfRecibe.Destino);
+                    formulario_hash.OfRecibe = new Oficial(Convert.ToInt32(numericUpDownRecibe.Value), textBoxNomOfRecibe.Text);
+                    formulario_hash.OfRecibe.Jerarquia = (Jerarquia)comboBoxJerarquiaRecibe.SelectedItem;
+                    formulario_hash.OfRecibe.Destino = new Destino(comboBoxDestRecibe.Text);
+                    Oficial.AgregarOficial(formulario_hash.OfRecibe);
+                    Destino.AgregaDestino(formulario_hash.OfRecibe.Destino);
                 }
                 else
                 {

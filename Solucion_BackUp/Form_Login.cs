@@ -18,7 +18,7 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        public Usuario Usuario = new Usuario(true);
+        public User Usuario = new User(true);
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
             if (Verificar())
@@ -43,18 +43,15 @@ namespace Presentacion
                 {
                     if (Validar.SoloContraseña(textBoxPassword.Text))
                     {
-                       var User = Usuario.ControlPasswword(textBoxUsuario.Text.Trim(), textBoxPassword.Text.Trim());
-                       
-                        
+                       var User = Usuario.ControlPasswword(textBoxUsuario.Text.Trim(), Encriptacion.Encriptar(textBoxPassword.Text.Trim()));
                         if (User != null)
                         {
                             Usuario = User;
                             return true;
-
                         }
                         else
                         {
-                            MessageBox.Show("No coinciden la contrseña o Usuario");
+                            MessageBox.Show("No coinciden la contraseña o Usuario");
                             return false;
                         }
                     }

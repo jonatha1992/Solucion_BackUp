@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hash
+namespace Presentacion
 {
     partial class Form_Hash
     {

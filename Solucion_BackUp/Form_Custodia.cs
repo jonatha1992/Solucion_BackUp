@@ -1,12 +1,11 @@
-﻿using Hash;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
 
-namespace Hash
+namespace Presentacion
 {
     public partial class Form_Custodia : Form
     {

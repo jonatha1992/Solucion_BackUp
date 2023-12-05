@@ -1,7 +1,9 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.CustomUI;
 using Presentacion.Clases;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,19 +12,20 @@ namespace Presentacion
 {
     public partial class Form_BackUp : Form
     {
-        public Form_BackUp(Usuario usuario = null)
+        public Form_BackUp(User usuario = null)
         {
 
             InitializeComponent();
             comboBoxMedida.DataSource = new List<string> { "GB", "MB", "KB", "TB" };
 
-            if (usuario != null) { user = usuario; }     
+            if (usuario != null) { user = usuario; }
         }
 
 
 
-        Usuario user;
+        User user;
         string filePath = "BASE.xlsx";
+        string Hoja = "BACKUP";
         List<Registro> registros = new List<Registro>();
         Registro registroSeleccionado;
         List<string> SugerenciasDVD = new List<string>();
@@ -54,7 +57,7 @@ namespace Presentacion
 
             using (var workbook = new XLWorkbook(filePath))
             {
-                var worksheet = workbook.Worksheet("BACKUP"); // Obtener la primera hoja del libro
+                var worksheet = workbook.Worksheet(Hoja); // Obtener la primera hoja del libro
 
                 // Iterar a través de las filas del archivo Excel
                 foreach (var row in worksheet.RowsUsed().Skip(1)) // Skip(1) para omitir la primera fila (encabezados)
@@ -76,18 +79,20 @@ namespace Presentacion
                     registro.Peso = row.Cell(9).GetString();
                     registro.Confeccionado = row.Cell(10).GetString();
                     registro.Observacion = row.Cell(11).GetString();
-                    
+
 
                     if (!row.Cell(8).IsEmpty()) registro.Fecha_Registro = row.Cell(8).GetDateTime();
                     if (!row.Cell(12).IsEmpty()) registro.Creado = row.Cell(12).GetDateTime();
                     if (!row.Cell(13).IsEmpty()) registro.Modificado = row.Cell(13).GetDateTime();
-                    if (!row.Cell(14).IsEmpty()) registro.Usuario.Nombre = row.Cell(14).GetString();
+                    if (!row.Cell(14).IsEmpty()) registro.Usuario.NombreUsuario = row.Cell(14).GetString();
+                    else { registro.Usuario = new User("Sin asignar"); }
 
                     // Agregar el objeto Registro a la lista
                     registros.Add(registro);
                 }
 
             }
+            registros.Sort();
 
         }
 
@@ -119,7 +124,7 @@ namespace Presentacion
                     {
                         SugerenciasCaratula.Add(Caratula);
                     }
-                    
+
                     string Confeccionado = row.Cell(7).GetString().Trim();
                     if (!SugerenciasConfeccionado.Exists(X => X == Confeccionado))
                     {
@@ -217,11 +222,35 @@ namespace Presentacion
 
 
         }
+        private void dgvBack_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn column = dgvBack.Columns[e.ColumnIndex];
+            string nombreColumna = column.Name;
 
-        void CargarGrilla(List<Registro> registros)
+            List<Registro> list = dgvBack.DataSource as List<Registro>;
+
+            if (column.HeaderCell.SortGlyphDirection == SortOrder.Ascending)
+            {
+                //registros = registros.OrderByDescending(x => x.GetType().GetProperty(nombreColumna).GetValue(x, null)).ToList();
+                //CargarGrilla(registros, nombreColumna , SortOrder.Descending);
+                list = list.OrderByDescending(x => x.GetType().GetProperty(nombreColumna).GetValue(x, null)).ToList();
+                CargarGrilla(list, nombreColumna, SortOrder.Descending);
+
+            }
+            else
+            {
+                //registros = registros.OrderBy(x => x.GetType().GetProperty(nombreColumna).GetValue(x, null)).ToList();
+                //CargarGrilla(registros, nombreColumna , SortOrder.Ascending);
+                list = list.OrderBy(x => x.GetType().GetProperty(nombreColumna).GetValue(x, null)).ToList();
+                CargarGrilla(list, nombreColumna, SortOrder.Ascending);
+            }
+
+        }
+
+
+        void CargarGrilla(List<Registro> registros, string columna = "", SortOrder sortoder = SortOrder.Ascending)
         {
             dgvBack.DataSource = null;
-            registros.Sort();
             dgvBack.DataSource = registros;
             dgvBack.Columns["Id"].Width = 30;
             dgvBack.Columns["NroBackUp"].HeaderText = "Nro BackUp";
@@ -235,12 +264,21 @@ namespace Presentacion
             dgvBack.Columns["Fecha_Registro"].HeaderText = "Fecha Registro";
             dgvBack.Columns["Fecha_Registro"].Width = 60;
             dgvBack.Columns["Peso"].Width = 60;
-            dgvBack.Columns["Confeccionado"].Width = 100;
+            //dgvBack.Columns["Confeccionado"].Width = 100;
+            dgvBack.Columns["Confeccionado"].Visible = true;
             dgvBack.Columns["Creado"].Width = 90;
             dgvBack.Columns["Modificado"].Width = 90;
-            dgvBack.Columns["Creado"].Visible = false;
-            dgvBack.Columns["Modificado"].Visible = false;
-            dgvBack.Columns["Usuario"].Visible = false;
+            dgvBack.Columns["Usuario"].Width = 90;
+            dgvBack.Columns["Creado"].Visible = user.Rol == "ADMIN" || user.Rol == "SUPERVISOR" ? true : false;
+            dgvBack.Columns["Modificado"].Visible = user.Rol == "ADMIN" || user.Rol == "SUPERVISOR" ? true : false;
+            dgvBack.Columns["Usuario"].Visible = user.Rol == "ADMIN" || user.Rol == "SUPERVISOR" ? true : false;
+
+
+            DataGridViewColumn columnaOrdenada = dgvBack.Columns[columna];
+            if (columnaOrdenada != null)
+            {
+                columnaOrdenada.HeaderCell.SortGlyphDirection = sortoder;
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -290,7 +328,6 @@ namespace Presentacion
         {
             try
             {
-
                 Registro registroABuscar = CrearRegistro();
 
                 List<Registro> registroBuscados = new List<Registro>();
@@ -311,6 +348,7 @@ namespace Presentacion
                 if (!string.IsNullOrEmpty(registroABuscar.DVD))
                 {
                     registroBuscados.AddRange(registros.Where(x => x.DVD.Contains(registroABuscar.DVD)));
+                    registroBuscados.RemoveAll(x => !x.DVD.Contains(registroABuscar.DVD));
                 }
                 if (!string.IsNullOrEmpty(registroABuscar.ParteDVD))
                 {
@@ -319,6 +357,7 @@ namespace Presentacion
                 if (!string.IsNullOrEmpty(registroABuscar.Caratula))
                 {
                     registroBuscados.AddRange(registros.Where(x => x.Caratula.Contains(registroABuscar.Caratula)));
+                    registroBuscados.RemoveAll(x => !x.DVD.Contains(registroABuscar.Caratula));
                 }
                 if (registroABuscar.Fecha_Registro.Value.Date != DateTime.Now.Date)
                 {
@@ -465,7 +504,7 @@ namespace Presentacion
                         worksheet.Cell(lastRow + 1, 11).Value = nuevoRegistro.Observacion;
                         worksheet.Cell(lastRow + 1, 12).Value = nuevoRegistro.Creado;
                         worksheet.Cell(lastRow + 1, 13).Value = nuevoRegistro.Modificado;
-                        worksheet.Cell(lastRow + 1, 14).Value = nuevoRegistro.Usuario.Nombre;
+                        worksheet.Cell(lastRow + 1, 14).Value = nuevoRegistro.Usuario.NombreUsuario;
 
                         // Guarda los cambios en el archivo Excel
                         workbook.SaveAs(filePath);
@@ -521,7 +560,7 @@ namespace Presentacion
                         row.Cell(11).Value = registroActualizado.Observacion;
                         row.Cell(12).Value = registroActualizado.Creado;
                         row.Cell(13).Value = registroActualizado.Modificado;
-                        row.Cell(14).Value = registroActualizado.Usuario.Nombre;
+                        row.Cell(14).Value = registroActualizado.Usuario.NombreUsuario;
 
                         // Guarda los cambios en el archivo Excel
                         workbook.SaveAs(filePath);

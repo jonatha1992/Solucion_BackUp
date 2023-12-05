@@ -31,7 +31,6 @@ namespace Presentacion
             {
                 V.Handled = false;
             }
-
             else
             {
                 V.Handled = true;
@@ -75,7 +74,6 @@ namespace Presentacion
             {
                 V.Handled = true;
                 MessageBox.Show("Solo letras sin espacios", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
 
         }
@@ -128,12 +126,8 @@ namespace Presentacion
             {
                 V.Handled = true;
                 MessageBox.Show("Solo Decimales", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
-
         }
-
-
 
         public static void NoSaltosDelinea(KeyPressEventArgs V)
         {

@@ -18,7 +18,7 @@ namespace Presentacion.Clases
         public string Observacion { get; set; } = null;
         public DateTime? Creado{ get; set; }
         public DateTime? Modificado{ get; set; }
-        public Usuario Usuario { get; set; } = new Usuario();
+        public User Usuario { get; set; } = new User();
 
 
         public int CompareTo(Registro other)

@@ -200,6 +200,7 @@ namespace Presentacion
             this.dgvBack.Size = new System.Drawing.Size(1214, 673);
             this.dgvBack.TabIndex = 10;
             this.dgvBack.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.dgvBack.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBack_ColumnHeaderMouseClick);
             // 
             // dateTimePickerFechaRegistro
             // 
