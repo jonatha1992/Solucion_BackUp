@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class Form_Registro : Form
+    public partial class Form_Informe : Form
     {
-        public Form_Registro(User usuario = null)
+        public Form_Informe(User usuario = null)
         {
 
             InitializeComponent();
@@ -72,25 +72,22 @@ namespace Presentacion
                     // Iterar a través de las filas del archivo Excel
                     foreach (var row in worksheet.RowsUsed().Skip(1)) // Skip(1) para omitir la primera fila (encabezados)
                     {
-
                         if (row.Cell(1).IsEmpty())
                         {
                             break; // Salir completamente del bucle
                         }
                         try
                         {
-
                             // Si llegamos a este punto, la primera celda tiene información, así que podemos procesar la fila
                             Informe informe = new Informe();
-
                             informe.Id = row.Cell(1).IsEmpty() ? 0 : row.Cell(1).GetValue<int>();
                             informe.NroAsunto = row.Cell(2).IsEmpty() ? null : row.Cell(2).GetString();
                             informe.NroOrden = row.Cell(3).IsEmpty() ? 0 : row.Cell(3).GetValue<int>();
                             informe.Ano = row.Cell(4).IsEmpty() ? 0 : row.Cell(4).GetValue<int>();
                             informe.FechaIngreso = row.Cell(5).IsEmpty() ? (DateTime?)null : row.Cell(5).GetDateTime();
-                            informe.TipoDelito = row.Cell(6).IsEmpty() ? null : row.Cell(6).GetString();
-                            informe.Solicitante = row.Cell(7).IsEmpty() ? null : row.Cell(7).GetString();
-                            informe.NroSolicitud = row.Cell(8).IsEmpty() ? null : row.Cell(8).GetString();
+                            informe.TipoSolicitud = row.Cell(6).IsEmpty() ? null : row.Cell(6).GetString();
+                            informe.NroSolicitud = row.Cell(7).IsEmpty() ? null : row.Cell(7).GetString();
+                            informe.Solicitante = row.Cell(8).IsEmpty() ? null : row.Cell(8).GetString();
                             informe.NroCausa = row.Cell(9).IsEmpty() ? null : row.Cell(9).GetString();
                             informe.Caratula = row.Cell(10).IsEmpty() ? null : row.Cell(10).GetString();
                             informe.FechaHecho = row.Cell(11).IsEmpty() ? (DateTime?)null : row.Cell(11).GetDateTime();
@@ -107,7 +104,6 @@ namespace Presentacion
                             informe.Creado = row.Cell(22).IsEmpty() ? (DateTime?)null : row.Cell(22).GetDateTime();
                             informe.Modificado = row.Cell(23).IsEmpty() ? (DateTime?)null : row.Cell(23).GetDateTime();
                             informe.Usuario = row.Cell(24).IsEmpty() ? null : new User(row.Cell(24).GetString());
-
                             // Agregar el objeto Registro a la lista
                             Informes.Add(informe);
                         }
@@ -127,8 +123,6 @@ namespace Presentacion
             }
 
         }
-
-
         private void GetSuggestionExcel()
         {
 
@@ -147,10 +141,10 @@ namespace Presentacion
                     string Asunto = row.Cell(2).GetString().Trim();
                     if (!SugerenciasNroAsunto.Exists(X => X == Asunto))
                     {
-                        SugerenciasCausa.Add(Asunto);
+                        SugerenciasNroAsunto.Add(Asunto);
                     }
 
-                    string NroSolicitud = row.Cell(8).GetString().Trim();
+                    string NroSolicitud = row.Cell(7).GetString().Trim();
                     if (!SugerenciaNroSolicitud.Exists(X => X == NroSolicitud))
                     {
                         SugerenciaNroSolicitud.Add(NroSolicitud);
@@ -158,7 +152,7 @@ namespace Presentacion
 
                     // Si llegamos a este punto, la primera celda tiene información, así que podemos procesar la fila
 
-                    string Solicitante = row.Cell(7).GetString().Trim();
+                    string Solicitante = row.Cell(8).GetString().Trim();
                     if (!SugerenciaSolicitante.Exists(X => X == Solicitante))
                     {
                         SugerenciaSolicitante.Add(Solicitante);
@@ -200,6 +194,12 @@ namespace Presentacion
                     {
                         SugerenciaActaElevacion.Add(Elevacion);
                     }
+
+                    string TipoDelito = row.Cell(12).GetString().Trim();
+                    if (!SugerenciaTipoDelito.Exists(X => X == TipoDelito))
+                    {
+                        SugerenciaTipoDelito.Add(TipoDelito);
+                    }
                     string retirado = row.Cell(18).GetString().Trim();
                     if (!SugerenciaRetirado.Exists(X => X == retirado))
                     {
@@ -222,9 +222,10 @@ namespace Presentacion
             textBoxNroSolicitud.AutoCompleteCustomSource.AddRange(SugerenciaNroSolicitud.ToArray());
             textBoxNroInforme.AutoCompleteCustomSource.AddRange(SugerenciaInforme.ToArray());
             comboBoxDependencia.AutoCompleteCustomSource.AddRange(SugerenciaDependecia.ToArray());
-            comboBoxTipoDelito.AutoCompleteCustomSource.AddRange(SugerenciaTipoDelito.ToArray());
+            comboBoxTipoDelito.DataSource= SugerenciaTipoDelito;
             textBoxRetirado.AutoCompleteCustomSource.AddRange(SugerenciaRetirado.ToArray());
             comboBoxOrganismo.AutoCompleteCustomSource.AddRange(SugerenciaOrganismo.ToArray());
+            textBoxNroDvd.AutoCompleteCustomSource.AddRange(SugerenciasDVD.ToArray());
         }
         public bool ValidarControles()
         {
@@ -321,8 +322,6 @@ namespace Presentacion
             //SugerenciasCaratula.Add(textBoxCausa_Prevencion.Text);
 
             return newinforme;
-
-
         }
 
         void LoadGrid(List<Informe> lista)
@@ -478,7 +477,7 @@ namespace Presentacion
                 {
                     var nuevo = CrearRegistro();
                     nuevo.Creado = DateTime.Now;
-                    //AgregarRegistro(nuevo);
+                    informeSeleccionado.;
                     GetRegisterExcel();
                     //CargarGrilla(registros);
                     HabilitarRegistro();
@@ -539,154 +538,7 @@ namespace Presentacion
                 MessageBox.Show($"Error: {ex.Message}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private bool AgregarRegistro(Registro nuevoRegistro)
-        {
-            try
-            {
-                using (var workbook = new XLWorkbook(filePath))
-                {
-                    var worksheet = workbook.Worksheet(1);
-
-                    // Encuentra la última fila con datos en la columna A
-                    int lastRow = worksheet.LastCellUsed().Address.RowNumber;
-                    //nuevoRegistro.Id = registros.Max(x => x.Id) + 1;
-
-                    // Asegúrate de que el nuevo registro no exista ya en el Excel antes de agregarlo
-                    //if (!registros.Any(r => r.Id == nuevoRegistro.Id))
-                    //{
-                    //    // Agrega el nuevo registro al final del Excel
-                    //    worksheet.Cell(lastRow + 1, 1).Value = nuevoRegistro.Id;
-                    //    worksheet.Cell(lastRow + 1, 2).Value = nuevoRegistro.NroBackUp;
-                    //    worksheet.Cell(lastRow + 1, 3).Value = nuevoRegistro.ParteBackUp;
-                    //    worksheet.Cell(lastRow + 1, 4).Value = nuevoRegistro.FechaBackUP;
-                    //    worksheet.Cell(lastRow + 1, 5).Value = nuevoRegistro.DVD;
-                    //    worksheet.Cell(lastRow + 1, 6).Value = nuevoRegistro.ParteDVD;
-                    //    worksheet.Cell(lastRow + 1, 7).Value = nuevoRegistro.Caratula;
-                    //    worksheet.Cell(lastRow + 1, 8).Value = nuevoRegistro.Fecha_Registro;
-                    //    worksheet.Cell(lastRow + 1, 9).Value = nuevoRegistro.Peso;
-                    //    worksheet.Cell(lastRow + 1, 10).Value = nuevoRegistro.Confeccionado;
-                    //    worksheet.Cell(lastRow + 1, 11).Value = nuevoRegistro.Observacion;
-                    //    worksheet.Cell(lastRow + 1, 12).Value = nuevoRegistro.Creado;
-                    //    worksheet.Cell(lastRow + 1, 13).Value = nuevoRegistro.Modificado;
-                    //    worksheet.Cell(lastRow + 1, 14).Value = nuevoRegistro.Usuario.Nombre;
-
-                    //    // Guarda los cambios en el archivo Excel
-                    //    workbook.SaveAs(filePath);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show($"Ya existe un registro con NroBackUp {nuevoRegistro.NroBackUp} en el archivo Excel.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //    return false;
-                    //}
-                    return true;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al actualizar en Excel: {ex.Message}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-
-            }
-        }
-        private bool ActualizarRegistro(Registro registroActualizado)
-        {
-            try
-            {
-                using (var workbook = new XLWorkbook(filePath))
-                {
-                    var worksheet = workbook.Worksheet(1);
-
-
-                    var cell = worksheet.CellsUsed(c => c.WorksheetRow().RowNumber() >= 2)
-                               .FirstOrDefault(c =>
-                               {
-                                   if (int.TryParse(c.GetString(), out int cellValue))
-                                   {
-                                       return cellValue == registroActualizado.Id;
-                                   }
-                                   return false;
-                               });
-
-                    // Si encuentra la celda, actualiza los valores en esa fila
-                    if (cell != null)
-                    {
-                        var row = cell.WorksheetRow();
-                        row.Cell(2).Value = registroActualizado.NroBackUp;
-                        row.Cell(3).Value = registroActualizado.ParteBackUp;
-                        row.Cell(4).Value = registroActualizado.FechaBackUP;
-                        row.Cell(5).Value = registroActualizado.DVD;
-                        row.Cell(6).Value = registroActualizado.ParteDVD;
-                        row.Cell(7).Value = registroActualizado.Caratula;
-                        row.Cell(8).Value = registroActualizado.Fecha_Registro;
-                        row.Cell(9).Value = registroActualizado.Peso;
-                        row.Cell(10).Value = registroActualizado.Confeccionado;
-                        row.Cell(11).Value = registroActualizado.Observacion;
-                        row.Cell(12).Value = registroActualizado.Creado;
-                        row.Cell(13).Value = registroActualizado.Modificado;
-                        row.Cell(14).Value = registroActualizado.Usuario.NombreUsuario;
-
-                        // Guarda los cambios en el archivo Excel
-                        workbook.SaveAs(filePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"No se encontró el registro con NroBackUp {registroActualizado.NroBackUp}, ParteBackUp {registroActualizado.ParteBackUp} y FechaBackUP {registroActualizado.FechaBackUP} en el archivo Excel.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
-                    }
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al actualizar en Excel: {ex.Message}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-        private bool EliminarRegistro(Registro registroEliminado)
-        {
-            try
-            {
-                using (var workbook = new XLWorkbook(filePath))
-                {
-                    var worksheet = workbook.Worksheet("BACKUP");
-
-                    var cell = worksheet.CellsUsed(c => c.WorksheetRow().RowNumber() >= 2)
-                                .FirstOrDefault(c =>
-                                {
-                                    if (int.TryParse(c.GetString(), out int cellValue))
-                                    {
-                                        return cellValue == registroEliminado.Id;
-                                    }
-                                    return false;
-                                });
-
-                    // Si encuentra la celda, elimina la fila
-                    if (cell != null)
-                    {
-                        var row = cell.WorksheetRow();
-                        row.Delete();
-
-                        // Guarda los cambios en el archivo Excel
-                        workbook.SaveAs(filePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"No se encontró el registro con NroBackUp {registroEliminado.NroBackUp}, ParteBackUp {registroEliminado.ParteBackUp} y FechaBackUP {registroEliminado.FechaBackUP} en el archivo Excel.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
-                    }
-
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al eliminar en Excel: {ex.Message}", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-
+      
         private void checkBoxEntrega_CheckedChanged(object sender, EventArgs e)
         {
             groupBoxEntrega.Enabled = checkBoxEntrega.Checked;

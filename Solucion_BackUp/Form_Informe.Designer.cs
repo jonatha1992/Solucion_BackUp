@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    partial class Form_Registro
+    partial class Form_Informe
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace Presentacion
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Registro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Informe));
             this.buttonRegistrar = new System.Windows.Forms.Button();
             this.buttonEliminar = new System.Windows.Forms.Button();
             this.dateTimePickerFechaIngreso = new System.Windows.Forms.DateTimePicker();
@@ -103,6 +103,7 @@ namespace Presentacion
             // buttonEliminar
             // 
             this.buttonEliminar.BackColor = System.Drawing.Color.Tomato;
+            this.buttonEliminar.Enabled = false;
             this.buttonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEliminar.Location = new System.Drawing.Point(299, 642);
             this.buttonEliminar.Margin = new System.Windows.Forms.Padding(4);
@@ -198,7 +199,6 @@ namespace Presentacion
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvInformes.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvInformes.Enabled = false;
             this.dgvInformes.Location = new System.Drawing.Point(450, 35);
             this.dgvInformes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvInformes.Name = "dgvInformes";
@@ -207,7 +207,7 @@ namespace Presentacion
             this.dgvInformes.RowHeadersWidth = 51;
             this.dgvInformes.RowTemplate.Height = 40;
             this.dgvInformes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInformes.Size = new System.Drawing.Size(1156, 719);
+            this.dgvInformes.Size = new System.Drawing.Size(1288, 719);
             this.dgvInformes.TabIndex = 10;
             this.dgvInformes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -455,6 +455,7 @@ namespace Presentacion
             // buttonActualizar
             // 
             this.buttonActualizar.BackColor = System.Drawing.Color.Yellow;
+            this.buttonActualizar.Enabled = false;
             this.buttonActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonActualizar.Location = new System.Drawing.Point(168, 642);
             this.buttonActualizar.Margin = new System.Windows.Forms.Padding(4);
@@ -620,7 +621,7 @@ namespace Presentacion
             // 
             // dateTimePickerFechaSalida
             // 
-            this.dateTimePickerFechaSalida.CustomFormat = "";
+            this.dateTimePickerFechaSalida.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerFechaSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerFechaSalida.Location = new System.Drawing.Point(10, 35);
             this.dateTimePickerFechaSalida.Margin = new System.Windows.Forms.Padding(4);
@@ -745,11 +746,11 @@ namespace Presentacion
             this.checkBoxEntrega.UseVisualStyleBackColor = true;
             this.checkBoxEntrega.CheckedChanged += new System.EventHandler(this.checkBoxEntrega_CheckedChanged);
             // 
-            // Form_Registro
+            // Form_Informes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1619, 757);
+            this.ClientSize = new System.Drawing.Size(1751, 757);
             this.Controls.Add(this.checkBoxEntrega);
             this.Controls.Add(this.groupBoxEntrega);
             this.Controls.Add(this.textBoxNroAsunto);
@@ -791,7 +792,7 @@ namespace Presentacion
             this.Controls.Add(this.buttonRegistrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.Name = "Form_Registro";
+            this.Name = "Form_Informes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registros";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

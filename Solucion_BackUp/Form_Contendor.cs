@@ -17,7 +17,7 @@ namespace Presentacion
         User Usuario = null;
         Form_Login _Login = null;
         Form_Hash _Hash = null;
-        Form_Registro _Registro = null;
+        Form_Informe _Registro = null;
         Form_BackUp _BackUp = null;
         Form_Contraseña _Contrasena = null;
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Presentacion
             if (Usuario.NombreUsuario != null)
             {
                 this.Hide();
-                _Registro = new Form_Registro(Usuario);
+                _Registro = new Form_Informe(Usuario);
                 _Registro.ShowDialog();
                 this.Show();
             }
